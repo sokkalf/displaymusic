@@ -13,7 +13,7 @@ mpd = MPD.new 'volumio', 6600, {callbacks: true}
 
 mpd.connect
 
-def format_string(song)             # take advantege of that Ý is a small dot in the OLED charset
+def format_string(song)             # take advantage of that Ý is a small dot in the OLED charset
   format('%s%s%s', song.title.fix(20), song.artist.fix(20), "#{song.date}Ý#{song.album}".fix(20))
 end
 
