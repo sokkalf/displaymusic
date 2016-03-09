@@ -49,7 +49,6 @@ end
 
 mpd.on :state do |state|
   Thread.abort_on_exception = true
-  puts state
   if state == :stop
     @stopped = true
     display.clear
