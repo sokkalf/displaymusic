@@ -7,6 +7,8 @@ class String
 end
 
 display = OLED.new
+display.set_contrast(0x3F)
+
 mpd = MPD.new 'volumio', 6600, {callbacks: true}
 
 mpd.connect
@@ -23,13 +25,17 @@ def length(len)
   end
 end
 
-mpd.on :song do |song|
+def update_songinfo(display, song)
   unless format_string(song) == @last_update
     display.clear
     display.set_cursor(0,0)
     display.write(format_string(song))
   end
   @last_update = format_string(song)
+end
+
+mpd.on :song do |song|
+  update_songinfo(display, song) unless @stopped
   unless @paused
     display.set_cursor(0,3)
     unless song.time.nil?
@@ -45,21 +51,33 @@ mpd.on :state do |state|
   Thread.abort_on_exception = true
   puts state
   if state == :stop
+    @stopped = true
+    display.clear
     display.set_cursor(0,3)
     display.write("#{Time.now.strftime("%H:%M")}".center(20))
   end
   if state == :pause
     @paused = true
+    @stopped = false
     display.clear_row 3
     display.set_cursor(5, 3)
     display.write('-- PAUSE --')
   end
   if state == :play
+    if @stopped
+      @last_update = nil
+    end
+    update_songinfo(display, mpd.current_song)
     display.clear_row 3
     @paused = false
+    @stopped = false
   end
 end
 
 while 1
-  sleep 20
+  if @stopped
+    display.set_cursor(0,3)
+    display.write("#{Time.now.strftime("%H:%M")}".center(20))
+  end
+  sleep 5
 end

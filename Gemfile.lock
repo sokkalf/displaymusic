@@ -1,32 +1,23 @@
 GIT
   remote: https://github.com/sokkalf/oled-control.git
-  revision: 0022d7cb70494269b74a4005a01a1bc9b25d3c21
+  revision: 6f34d7cb20c395c43afc1e87a2d9e9fed146e366
   specs:
     oled-control (0.0.1)
 
 GIT
   remote: https://github.com/sokkalf/ruby-mpd.git
-  revision: 1e514ef1f6381b88c193a52d820191f6933e88bc
+  revision: f93b0aefbaae8cf77aeef00e1e8c6bc707935d29
   specs:
     ruby-mpd (0.3.4)
 
 GEM
-  remote: https://rubygems.org/
   specs:
-    coderay (1.1.1)
-    method_source (0.8.2)
-    pry (0.10.3)
-      coderay (~> 1.1.0)
-      method_source (~> 0.8.1)
-      slop (~> 3.4)
-    slop (3.6.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   oled-control!
-  pry
   ruby-mpd!
 
 BUNDLED WITH
