@@ -41,7 +41,7 @@ mpd.on :song do |song|
     unless song.time.nil?
       time_display = format('%s/%s',length(song.time.first), length(song.time.last))
       len = 20 - time_display.size
-      progress = '='*(((song.time.first.to_f/song.time.last.to_f)*(len-1)).to_i)
+      progress = 'Ð'*(((song.time.first.to_f/song.time.last.to_f)*(len-1)).to_i)
       display.write("#{time_display}#{progress}>")
     end
   end
