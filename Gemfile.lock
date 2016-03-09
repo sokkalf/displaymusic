@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/sokkalf/oled-control.git
-  revision: 6f34d7cb20c395c43afc1e87a2d9e9fed146e366
+  revision: 285e1c6b68579f98f6501991c8008f0e1d2ed2ab
   specs:
     oled-control (0.0.1)
 

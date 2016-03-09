@@ -74,6 +74,27 @@ mpd.on :state do |state|
   end
 end
 
+Signal.trap("TERM") {
+  display.disable
+  exit
+}
+
+Signal.trap("INT") {
+  display.disable
+  exit
+}
+
+Signal.trap("USR1") {
+  if @disabled
+    display.enable
+    @disabled = false
+  else
+    display.disable
+    @disabled = true
+  end
+}
+
+
 while 1
   if @stopped
     display.set_cursor(0,3)
