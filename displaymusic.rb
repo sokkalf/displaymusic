@@ -1,15 +1,18 @@
 require 'oled-control/oled'
 require 'ruby-mpd'
+require 'yaml'
+
 class String
   def fix(size, padstr=' ')
     self[0...size].ljust(size, padstr) #or ljust
   end
 end
+@config = YAML.load_file('config.yml')
 
 display = OLED.new
-display.set_contrast(0x3F)
+display.set_contrast(@config['display']['contrast'])
 
-mpd = MPD.new 'volumio', 6600, {callbacks: true}
+mpd = MPD.new @config['mpd']['host'], @config['mpd']['port'], {callbacks: true}
 
 mpd.connect
 
@@ -53,7 +56,7 @@ mpd.on :state do |state|
     @stopped = true
     display.clear
     display.set_cursor(0,3)
-    display.write("#{Time.now.strftime("%H:%M")}".center(20))
+    display.write("#{Time.now.strftime(@config['display']['date_format'])}".center(20))
   end
   if state == :pause
     @paused = true
@@ -90,7 +93,7 @@ Signal.trap("USR1") {
 while 1
   if @stopped
     display.set_cursor(0,3)
-    display.write("#{Time.now.strftime("%H:%M")}".center(20))
+    display.write("#{Time.now.strftime(@config['display']['date_format'])}".center(20))
   end
   sleep 5
 end

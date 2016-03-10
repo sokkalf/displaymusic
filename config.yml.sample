@@ -1,0 +1,6 @@
+mpd:
+  host: 'volumio'
+  port: 6600
+display:
+  contrast: 0x3F
+  date_format: "%H:%M"
