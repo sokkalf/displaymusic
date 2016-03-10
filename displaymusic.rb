@@ -84,15 +84,8 @@ Signal.trap("INT") {
 }
 
 Signal.trap("USR1") {
-  if @disabled
-    display.enable
-    @disabled = false
-  else
-    display.disable
-    @disabled = true
-  end
+  display.flip
 }
-
 
 while 1
   if @stopped
