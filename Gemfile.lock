@@ -1,23 +1,19 @@
 GIT
-  remote: https://github.com/sokkalf/oled-control.git
-  revision: 953eae1d9ace5673a7fdb97acf01feeffac2314c
-  specs:
-    oled-control (0.0.1)
-
-GIT
-  remote: https://github.com/sokkalf/ruby-mpd.git
-  revision: f93b0aefbaae8cf77aeef00e1e8c6bc707935d29
+  remote: https://github.com/archSeer/ruby-mpd.git
+  revision: e0d5f4e30a8dedfea884192fc861dd048122677d
   specs:
     ruby-mpd (0.3.4)
 
 GEM
+  remote: https://rubygems.org/
   specs:
+    oled-control (0.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  oled-control!
+  oled-control
   ruby-mpd!
 
 BUNDLED WITH
