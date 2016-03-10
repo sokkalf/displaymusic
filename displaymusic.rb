@@ -9,7 +9,8 @@ class String
 end
 @config = YAML.load_file('config.yml')
 
-display = OLED.new
+display = OLED.new(@config['display']['i2c-bus'], @config['display']['i2c-address'],
+                   @config['display']['flipped'])
 display.set_contrast(@config['display']['contrast'])
 
 mpd = MPD.new @config['mpd']['host'], @config['mpd']['port'], {callbacks: true}

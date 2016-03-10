@@ -2,5 +2,8 @@ mpd:
   host: 'volumio'
   port: 6600
 display:
+  i2c-bus: '/dev/i2c-1'
+  i2c-address: 0x3C
+  flipped: false
   contrast: 0x3F
   date_format: "%H:%M"
