@@ -15,6 +15,14 @@ display.set_contrast(@config['display']['contrast'])
 
 mpd = MPD.new @config['mpd']['host'], @config['mpd']['port'], {callbacks: true}
 
+display.create_character(1, [0b11000,
+                             0b11100,
+                             0b11110,
+                             0b11111,
+                             0b11110,
+                             0b11100,
+                             0b11000,
+                             0b00000])
 mpd.connect
 
 def format_string(song)             # take advantage of that Ý is a small dot in the OLED charset
@@ -46,7 +54,7 @@ mpd.on :song do |song|
       time_display = format('%s/%s',length(song.time.first), length(song.time.last))
       len = 20 - time_display.size
       progress = 'Ð'*(((song.time.first.to_f/song.time.last.to_f)*(len-1)).to_i)
-      display.write("#{time_display}#{progress}>")
+      display.write("#{time_display}#{progress}\x01")
     end
   end
 end
