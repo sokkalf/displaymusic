@@ -48,8 +48,14 @@ sleep 5
 
 mpd.connect
 
-def format_string(song)             # take advantage of that Ý is a small dot in the OLED charset
-  format('%s%s%s', song.title.fix(20), song.artist.fix(20), "#{song.date}Ý#{song.album}".fix(20))
+def format_string(song)
+  year = if song.date.nil?
+           ""
+         else
+           "#{song.date}Ý"
+         end
+  #                                   take advantage of that Ý is a small dot in the OLED charset
+  format('%s%s%s', song.title.fix(20), song.artist.fix(20), "#{year}#{song.album}".fix(20))
 end
 
 def length(len)
