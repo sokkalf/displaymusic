@@ -56,14 +56,16 @@ def update_songinfo(display, song)
 end
 
 mpd.on :song do |song|
-  update_songinfo(display, song) unless @stopped
-  unless @paused
-    display.set_cursor(0,3)
-    unless song.time.nil?
-      time_display = format('%s/%s',length(song.time.first), length(song.time.last))
-      len = 20 - time_display.size
-      progress = 'Ð'*(((song.time.first.to_f/song.time.last.to_f)*(len-1)).to_i)
-      display.write("#{time_display}#{progress}\x01")
+  unless song.nil?
+    update_songinfo(display, song) unless @stopped
+    unless @paused
+      display.set_cursor(0, 3)
+      unless song.time.nil?
+        time_display = format('%s/%s', length(song.time.first), length(song.time.last))
+        len = 20 - time_display.size
+        progress = 'Ð'*(((song.time.first.to_f/song.time.last.to_f)*(len-1)).to_i)
+        display.write("#{time_display}#{progress}\x01")
+      end
     end
   end
 end
