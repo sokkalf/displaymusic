@@ -32,6 +32,20 @@ display.create_character(2, [0b00000,
                              0b11011,
                              0b11011,
                              0b00000])
+
+display.create_character(3, [0b11111,
+                             0b11111,
+                             0b11111,
+                             0b11111,
+                             0b11111,
+                             0b11111,
+                             0b11111,
+                             0b11111])
+# "splash" screen
+display.set_cursor(0,0)
+display.write("   \x03\x03\x03   \x03\x03   \x03\x03\x03      \x03  \x03 \x03  \x03 \x03         \x03  \x03 \x03\x03\x03\x03 \x03         \x03\x03\x03  \x03  \x03  \x03\x03\x03   ")
+sleep 5
+
 mpd.connect
 
 def format_string(song)             # take advantage of that Ý is a small dot in the OLED charset

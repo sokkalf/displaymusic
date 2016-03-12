@@ -6,9 +6,9 @@ GIT
 
 GIT
   remote: https://github.com/sokkalf/oled-control.git
-  revision: bb6caeca58d75eafa576e3ad4fba3ab6ef12a323
+  revision: 5d5dd87335b7b680e2b26a88780f72ea9ff09dfc
   specs:
-    oled-control (0.1.1)
+    oled-control (0.2.0)
 
 GEM
   remote: https://rubygems.org/
