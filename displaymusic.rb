@@ -23,6 +23,15 @@ display.create_character(1, [0b11000,
                              0b11100,
                              0b11000,
                              0b00000])
+
+display.create_character(2, [0b00000,
+                             0b11011,
+                             0b11011,
+                             0b11011,
+                             0b11011,
+                             0b11011,
+                             0b11011,
+                             0b00000])
 mpd.connect
 
 def format_string(song)             # take advantage of that Ý is a small dot in the OLED charset
@@ -71,8 +80,8 @@ mpd.on :state do |state|
     @paused = true
     @stopped = false
     display.clear_row 3
-    display.set_cursor(5, 3)
-    display.write('-- PAUSE --')
+    display.set_cursor(0, 3)
+    display.write("PAUSE \x02".center(20))
   end
   if state == :play
     if @stopped
