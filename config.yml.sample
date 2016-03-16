@@ -6,6 +6,6 @@ display:
   i2c-address: 0x3C
   flipped: false
   contrast: 0x3F
-  date_format: "%H:%M"
 options:
   show_ip_address: false
+  date_format: "%H:%M"

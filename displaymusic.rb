@@ -101,7 +101,7 @@ mpd.on :state do |state|
     @stopped = true
     display.clear
     display.set_cursor(0,3)
-    display.write("#{Time.now.strftime(@config['display']['date_format'])}".center(20))
+    display.write("#{Time.now.strftime(@config['options']['date_format'])}".center(20))
   end
   if state == :pause
     @paused = true
@@ -142,7 +142,7 @@ while 1
       display.write(@ip_address.center(20))
     end
     display.set_cursor(0,3)
-    display.write("#{Time.now.strftime(@config['display']['date_format'])}".center(20))
+    display.write("#{Time.now.strftime(@config['options']['date_format'])}".center(20))
   end
   sleep 5
 end
