@@ -1,6 +1,7 @@
 require 'oled-control/oled'
 require 'ruby-mpd'
 require 'yaml'
+require 'socket'
 
 class String
   def fix(size, padstr=' ')
@@ -8,6 +9,10 @@ class String
   end
 end
 @config = YAML.load_file('config.yml')
+
+if @config['options']['show_ip_address']
+  @ip_address = Socket.ip_address_list.select{|i| !i.ipv4_loopback? and i.ipv4_private? }.first.ip_address
+end
 
 display = OLED.new(@config['display']['i2c-bus'], @config['display']['i2c-address'],
                    @config['display']['flipped'])
@@ -132,6 +137,10 @@ Signal.trap("USR1") {
 
 while 1
   if @stopped
+    if @config['options']['show_ip_address']
+      display.set_cursor(0,1)
+      display.write(@ip_address.center(20))
+    end
     display.set_cursor(0,3)
     display.write("#{Time.now.strftime(@config['display']['date_format'])}".center(20))
   end

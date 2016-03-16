@@ -7,3 +7,5 @@ display:
   flipped: false
   contrast: 0x3F
   date_format: "%H:%M"
+options:
+  show_ip_address: false
