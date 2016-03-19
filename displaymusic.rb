@@ -57,10 +57,25 @@ def format_string(song)
   year = if song.date.nil?
            ""
          else
+           # take advantage of that Ý is a small dot in the OLED charset
            "#{song.date}Ý"
          end
-  #                                   take advantage of that Ý is a small dot in the OLED charset
-  format('%s%s%s', song.title.fix(20), song.artist.fix(20), "#{year}#{song.album}".fix(20))
+  title = if song.title.nil? or song.title.empty?
+            File.basename(song.file)
+          else
+            song.title
+          end
+  artist = if song.artist.nil? or song.artist.empty?
+             '-'
+           else
+             song.artist
+           end
+  album = if song.album.nil? or song.album.empty?
+            '-'
+          else
+            song.album
+          end
+  format('%s%s%s', title.fix(20), artist.fix(20), "#{year}#{album}".fix(20))
 end
 
 def length(len)
